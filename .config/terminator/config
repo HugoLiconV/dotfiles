@@ -1,0 +1,69 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  suppress_multiple_term_dialog = True
+  tab_position = hidden
+  title_font = DroidSansMono Nerd Font 9
+  title_hide_sizetext = True
+  title_inactive_bg_color = "#282a36"
+  title_inactive_fg_color = "#f8f8f2"
+  title_receive_bg_color = "#282a36"
+  title_receive_fg_color = "#8be9fd"
+  title_transmit_bg_color = "#282a36"
+  title_transmit_fg_color = "#bd93f9"
+[keybindings]
+  close_term = <Primary>w
+  copy = <Primary>c
+  go_next = <Primary><Shift>n
+  move_tab_left = None
+  move_tab_right = None
+  new_tab = <Primary>t
+  new_window = <Primary><Shift>t
+  next_tab = <Primary><Shift>n
+  paste = <Primary>v
+  rotate_ccw = None
+  rotate_cw = None
+  scaled_zoom = None
+  split_horiz = <Shift><Alt>d
+  split_vert = <Primary><Shift>d
+  switch_to_tab_1 = <Primary>1
+  switch_to_tab_10 = <Primary>0
+  switch_to_tab_2 = <Primary>2
+  switch_to_tab_3 = <Primary>3
+  switch_to_tab_4 = <Primary>4
+  switch_to_tab_5 = <Primary>5
+  switch_to_tab_6 = <Primary>6
+  switch_to_tab_7 = <Primary>7
+  switch_to_tab_8 = <Primary>8
+  switch_to_tab_9 = <Primary>9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#1e1f29"
+    copy_on_selection = True
+    cursor_blink = False
+    cursor_color = "#bbbbbb"
+    cursor_shape = underline
+    font = DroidSansMono Nerd Font 15
+    foreground_color = "#f8f8f2"
+    login_shell = True
+    palette = "#000000:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#555555:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
+  [[Custom]]
+    background_darkness = 0.85
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = DroidSansMono Nerd Font 15
+    scrollback_infinite = True
+    use_system_font = False
