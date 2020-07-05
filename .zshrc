@@ -1,11 +1,10 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+################################################
+#                   Exports                    #
+################################################
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/hugo/.oh-my-zsh"
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export STUDIO="/home/hugo/android-studio/bin"
 export REACT_EDITOR=vscode
@@ -19,46 +18,27 @@ export PATH=$HOME/.composer/vendor/bin:$PATH
 export ANDROID_AVD_HOME=$ANDROID_HOME/.android/avd
 export ANDROID_SDK_HOME=$ANDROID_HOME/
 export TERM=xterm-256color
-
+export PATH=/home/hugo/.pyenv/versions/3.7.2/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history zsh-autosuggestions last-working-dir vi-mode)
+plugins=(git history zsh-autosuggestions last-working-dir vi-mode tmux)
 # git: The git plugin provides many aliases and a few useful functions.
 # history: Provides a couple of convenient aliases for using the history
 # last-working-dir: Keeps track of the last used working directory and automatically jumps into it for new shells
 # vi-mode: This plugin increase vi-like zsh functionality.
+# tmux: This plugin provides aliases for tmux, the terminal multiplexer.
+
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+################################################
+#            CUSTOM FUNCTIONS                  #
+################################################
 
 # Create a directory and move into it
 mkcd(){
@@ -80,9 +60,10 @@ function kill_by_port() {
 browsersync(){
  browser-sync start --server --directory --files "**/*"
 }
+
 ################################################
 #            CUSTOM ALIAS                      #
-###############################################
+################################################
 alias mv="mv -i"
 alias lsdot="ls -pah | grep -v / | grep "^\.""
 alias ll="ls -lah"
@@ -120,11 +101,11 @@ alias ns="npm start"
 alias nt="npm t"
 alias nrd="npm run dev"
 alias gpt="prisma token --copy"
+
+
 #################################################
 #                   POWERLEVEL                  #
 #################################################
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs ssh status ip ram)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status dir_writable ip ram )
@@ -136,10 +117,8 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
 POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
 POWERLEVEL9K_ALWAYS_SHOW_USER=false
-# POWERLEVEL9K_CONTEXT_TEMPLATE="\uF109 %m"
 POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
 
-#POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="❱ "
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
@@ -167,7 +146,6 @@ POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="yellow"
 POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="$DEFAULT_BACKGROUND"
 
-# POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="magenta"
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
 
@@ -196,11 +174,8 @@ POWERLEVEL9K_STATUS_ERROR_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
 
 POWERLEVEL9K_HISTORY_FOREGROUND="$DEFAULT_FOREGROUND"
 
-# POWERLEVEL9K_TIME_FORMAT="%D{%T \uF017}" #  15:29:33
 POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d/%m/%y}"
 
-#POWERLEVEL9K_TIME_FOREGROUND="$DEFAULT_FOREGROUND"
-#POWERLEVEL9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_TIME_BACKGROUND='white'
 
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=""
@@ -240,9 +215,7 @@ POWERLEVEL9K_HOST_ICON="\uF109" # 
 POWERLEVEL9K_OS_ICON_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
 
-#POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="$DEFAULT_BACKGROUND"
-#POWERLEVEL9K_LOAD_WARNING_BACKGROUND="$DEFAULT_BACKGROUND"
-#POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="$DEFAULT_BACKGROUND"
+
 POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="white"
 POWERLEVEL9K_LOAD_WARNING_BACKGROUND="white"
 POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="white"
@@ -250,7 +223,6 @@ POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="white"
 POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND="red"
 POWERLEVEL9K_LOAD_WARNING_FOREGROUND="yellow"
 
-#POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="green"
 POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="black"
 
 POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
@@ -269,14 +241,10 @@ POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_STATUS_CROSS=true
 
 ##############
-# Sourcing z #
+# Other Stuff #
 ##############
-source ~/z.sh
-
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/z.sh # Sourcing z 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export PATH=/home/hugo/.pyenv/versions/3.7.2/bin:$PATH
-export PATH="$HOME/.cargo/bin:$PATH"
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
