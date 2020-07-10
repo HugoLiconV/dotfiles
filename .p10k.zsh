@@ -49,7 +49,7 @@
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    # context                 # user@host
+    context                 # user@host
     dir                       # current directory
     vcs                       # git status
     # command_execution_time  # previous command duration
@@ -62,13 +62,23 @@
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    command_execution_time    # previous command duration
-    virtualenv                # python virtual environment
-    context                   # user@host
+    # command_execution_time    # previous command duration
+    # virtualenv                # python virtual environment
+    # context                   # user@host
+    ip 
+    ram 
     # time                    # current time
     # =========================[ Line #2 ]=========================
     newline                   # \n
   )
+
+
+  # Yellow ram information
+  typeset -g POWERLEVEL9K_RAM_FOREGROUND=$cyan
+  
+  # IP information
+  typeset -g POWERLEVEL9K_IP_INTERFACE="wlo1"
+  typeset -g POWERLEVEL9K_IP_FOREGROUND=$white
 
   # Basic style options that define the overall prompt look.
   typeset -g POWERLEVEL9K_BACKGROUND=                            # transparent background
