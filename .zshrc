@@ -53,6 +53,11 @@ mkcd(){
   cd "$1"
 }
 
+function gbfo(){
+  branch_name=$1
+  git checkout -b $branch_name origin/master
+}
+
 function csv_viewer() {
   file=$1
   column -s, -t < $file | less -#2 -N -S
@@ -79,6 +84,7 @@ alias start-dashboard="cd /home/hugo/Documents/Prixz/Avus-dashboard && npm start
 alias start-api-dev="/home/hugo/Documents/Prixz/GraphQL-API && nrd"
 alias start-api-prod="/home/hugo/Documents/Prixz/GraphQL-API && ns"
 alias reload="exec zsh"
+alias dev="cd ~/Documents/dev"
 alias config="vi ~/.zshrc"
 alias cat-config="cat ~/.zshrc"
 alias d="adb shell input keyevent 82"
