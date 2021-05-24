@@ -58,6 +58,15 @@ function gbfo(){
   git checkout -b $branch_name origin/master
 }
 
+function gbfs(){
+  branch_name=$1
+  git checkout -b $branch_name origin/staging
+}
+
+function gbfd(){
+  branch_name=$1
+  git checkout -b $branch_name origin/develop
+}
 function csv_viewer() {
   file=$1
   column -s, -t < $file | less -#2 -N -S
@@ -104,6 +113,10 @@ alias nr="npm run"
 alias ns="npm start"
 alias nt="npm t"
 alias nrd="npm run dev"
+alias yd="yarn dev"
+alias yb="yarn build"
+alias y="yarn"
+alias yt="yarn test"
 alias gpt="prisma token --copy"
 
 
