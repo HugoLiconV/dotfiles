@@ -54,6 +54,12 @@ mkcd(){
 }
 
 function gbfo(){
+  origin_branch=$1
+  local_branch=$2
+  git checkout -b $local_branch origin/$origin_branch
+}
+
+function gbfm(){
   branch_name=$1
   git checkout -b $branch_name origin/master
 }
