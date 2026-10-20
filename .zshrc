@@ -10,10 +10,10 @@ fi
 ################################################
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/hugo/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export NVM_DIR="$HOME/.nvm"
 
-export STUDIO="/home/hugo/android-studio/bin"
+export STUDIO="$HOME/android-studio/bin"
 export REACT_EDITOR=vscode
 
 export ANDROID_HOME="/mnt/a0cae30c-c710-4db8-a518-dc06e08341bf/Android/SDK"
@@ -25,7 +25,7 @@ export PATH=$HOME/.composer/vendor/bin:$PATH
 export ANDROID_AVD_HOME=$ANDROID_HOME/.android/avd
 export ANDROID_SDK_HOME=$ANDROID_HOME/
 export TERM=xterm-256color
-export PATH=/home/hugo/.pyenv/versions/3.7.2/bin:$PATH
+export PATH=$HOME/.pyenv/versions/3.7.2/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -33,7 +33,7 @@ ZSH_THEME="dracula"
 
 
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history zsh-autosuggestions last-working-dir vi-mode tmux)
+plugins=(git history zsh-autosuggestions last-working-dir vi-mode)
 # git: The git plugin provides many aliases and a few useful functions.
 # history: Provides a couple of convenient aliases for using the history
 # last-working-dir: Keeps track of the last used working directory and automatically jumps into it for new shells
@@ -95,9 +95,9 @@ alias lsdot="ls -pah | grep -v / | grep "^\.""
 alias ll="ls -lah"
 alias ..="cd .."
 alias open="xdg-open"
-alias start-dashboard="cd /home/hugo/Documents/Prixz/Avus-dashboard && npm start"
-alias start-api-dev="/home/hugo/Documents/Prixz/GraphQL-API && nrd"
-alias start-api-prod="/home/hugo/Documents/Prixz/GraphQL-API && ns"
+alias start-dashboard="cd $HOME/Documents/Prixz/Avus-dashboard && npm start"
+alias start-api-dev="$HOME/Documents/Prixz/GraphQL-API && nrd"
+alias start-api-prod="$HOME/Documents/Prixz/GraphQL-API && ns"
 alias reload="exec zsh"
 alias dev="cd ~/Documents/dev"
 alias config="vi ~/.zshrc"
@@ -108,7 +108,7 @@ alias android="react-native run-android"
 alias reverse="adb reverse tcp:8081 tcp:8081"
 alias check-update="ncu -g"
 alias release="./gradlew app:assembleRelease"
-alias flipper="/home/hugo/Downloads/Flipper-linux/flipper"
+alias flipper="$HOME/Downloads/Flipper-linux/flipper"
 alias ioe="adb -s emulator-5554 install app/build/outputs/apk/release/app-release.apk"
 alias iod="adb -s 98892a4335444f4b39 install app/build/outputs/apk/release/app-release.apk"
 alias iodd="adb -s 98892a4335444f4b39 install app/build/outputs/apk/debug/app-debug.apk"
@@ -237,7 +237,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
 ##############
 # Other Stuff #
 ##############
-source ~/z.sh # Sourcing z 
+[ -f ~/.z ] || touch ~/.z # z expects its data file to exist
+source "${${(%):-%x}:A:h}/z.sh" # Sourcing z from the dotfiles repo
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -249,6 +250,7 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /home/hugo/.config/broot/launcher/bash/br
+[ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - zsh)"
+command -v rbenv >/dev/null && eval "$(rbenv init - zsh)"
+export PATH="$HOME/.local/bin:$PATH"

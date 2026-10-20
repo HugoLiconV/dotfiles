@@ -10,7 +10,7 @@ git clone https://github.com/HugoLiconV/dotfiles.git
 
 ### Setup Vim
 ```bash
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.vimrc ~/.vimrc
 ```
 
 ### Install tmux
