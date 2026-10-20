@@ -12,21 +12,32 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export NVM_DIR="$HOME/.nvm"
-
-export STUDIO="$HOME/android-studio/bin"
 export REACT_EDITOR=vscode
-
-export ANDROID_HOME="/mnt/a0cae30c-c710-4db8-a518-dc06e08341bf/Android/SDK"
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$HOME/.composer/vendor/bin:$PATH
-export ANDROID_AVD_HOME=$ANDROID_HOME/.android/avd
-export ANDROID_SDK_HOME=$ANDROID_HOME/
 export TERM=xterm-256color
-export PATH=$HOME/.pyenv/versions/3.7.2/bin:$PATH
-export PATH="$HOME/.cargo/bin:$PATH"
+
+# Keep PATH free of duplicates (e.g. after `reload`)
+typeset -U path
+
+[[ -d "$HOME/android-studio/bin" ]] && export STUDIO="$HOME/android-studio/bin"
+
+# Android SDK: macOS default, Linux default, then the old Linux external drive
+for sdk in "$HOME/Library/Android/sdk" "$HOME/Android/Sdk" "/mnt/a0cae30c-c710-4db8-a518-dc06e08341bf/Android/SDK"; do
+  if [[ -d "$sdk" ]]; then
+    export ANDROID_HOME="$sdk"
+    path+=("$sdk/emulator" "$sdk/tools" "$sdk/tools/bin" "$sdk/platform-tools")
+    # The external drive also kept the AVDs and .android dir inside the SDK
+    if [[ "$sdk" == /mnt/* ]]; then
+      export ANDROID_AVD_HOME="$sdk/.android/avd"
+      export ANDROID_SDK_HOME="$sdk/"
+    fi
+    break
+  fi
+done
+unset sdk
+
+[[ -d "$HOME/.composer/vendor/bin" ]] && path=("$HOME/.composer/vendor/bin" $path)
+[[ -d "$HOME/.pyenv/versions/3.7.2/bin" ]] && path=("$HOME/.pyenv/versions/3.7.2/bin" $path)
+[[ -d "$HOME/.cargo/bin" ]] && path=("$HOME/.cargo/bin" $path)
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="dracula"
@@ -149,6 +160,6 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
-export PATH="$HOME/.rbenv/bin:$PATH"
+[[ -d "$HOME/.rbenv/bin" ]] && path=("$HOME/.rbenv/bin" $path)
 command -v rbenv >/dev/null && eval "$(rbenv init - zsh)"
-export PATH="$HOME/.local/bin:$PATH"
+path=("$HOME/.local/bin" $path)
