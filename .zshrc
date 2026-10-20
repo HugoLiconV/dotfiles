@@ -91,13 +91,14 @@ browsersync(){
 #            CUSTOM ALIAS                      #
 ################################################
 alias mv="mv -i"
-alias lsdot="ls -pah | grep -v / | grep "^\.""
+alias lsdot='ls -pah | grep -v / | grep "^\."'
 alias ll="ls -lah"
 alias ..="cd .."
-alias open="xdg-open"
+# macOS ships `open`; on Linux map it to xdg-open
+[[ "$OSTYPE" == linux* ]] && (( $+commands[xdg-open] )) && alias open="xdg-open"
 alias start-dashboard="cd $HOME/Documents/Prixz/Avus-dashboard && npm start"
-alias start-api-dev="$HOME/Documents/Prixz/GraphQL-API && nrd"
-alias start-api-prod="$HOME/Documents/Prixz/GraphQL-API && ns"
+alias start-api-dev="cd $HOME/Documents/Prixz/GraphQL-API && nrd"
+alias start-api-prod="cd $HOME/Documents/Prixz/GraphQL-API && ns"
 alias reload="exec zsh"
 alias dev="cd ~/Documents/dev"
 alias config="vi ~/.zshrc"
@@ -130,6 +131,7 @@ alias gpt="prisma token --copy"
 #               PLUGIN SETTINGS                 #
 #################################################
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
+
 ##############
 # Other Stuff #
 ##############
