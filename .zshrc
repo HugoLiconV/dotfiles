@@ -96,7 +96,18 @@ browsersync(){
 ################################################
 alias mv="mv -i"
 alias lsdot='ls -pah | grep -v / | grep "^\."'
-alias ll="ls -lah"
+if (( $+commands[eza] )); then
+  alias ll="eza -lah --git"
+  alias lt="eza --tree --level=2"
+else
+  alias ll="ls -lah"
+fi
+# Ubuntu's apt package installs bat as `batcat`
+if (( $+commands[bat] )); then
+  alias b="bat"
+elif (( $+commands[batcat] )); then
+  alias b="batcat"
+fi
 alias ..="cd .."
 # macOS ships `open`; on Linux map it to xdg-open
 [[ "$OSTYPE" == linux* ]] && (( $+commands[xdg-open] )) && alias open="xdg-open"
@@ -127,10 +138,17 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
 ##############
 # Other Stuff #
 ##############
-[ -f ~/.z ] || touch ~/.z # z expects its data file to exist
-source "${${(%):-%x}:A:h}/z.sh" # Sourcing z from the dotfiles repo
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fzf: Ctrl-R history, Ctrl-T files, Alt-C cd
+if (( $+commands[fzf] )); then
+  if fzf --zsh &>/dev/null; then
+    source <(fzf --zsh)
+  else  # fzf < 0.48 (e.g. Ubuntu's apt package) ships the scripts separately
+    for f in /usr/share/doc/fzf/examples/{key-bindings,completion}.zsh ~/.fzf.zsh; do
+      [[ -f "$f" ]] && source "$f"
+    done
+    unset f
+  fi
+fi
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -144,3 +162,6 @@ fi
 [[ -d "$HOME/.rbenv/bin" ]] && path=("$HOME/.rbenv/bin" $path)
 command -v rbenv >/dev/null && eval "$(rbenv init - zsh)"
 path=("$HOME/.local/bin" $path)
+
+# zoxide (`z`, `zi`): must stay at the end of the file
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
