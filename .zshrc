@@ -165,3 +165,4 @@ path=("$HOME/.local/bin" $path)
 
 # zoxide (`z`, `zi`): must stay at the end of the file
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
+eval "$(/opt/homebrew/bin/mise activate zsh)"
