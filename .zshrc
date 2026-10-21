@@ -18,18 +18,11 @@ export TERM=xterm-256color
 # Keep PATH free of duplicates (e.g. after `reload`)
 typeset -U path
 
-[[ -d "$HOME/android-studio/bin" ]] && export STUDIO="$HOME/android-studio/bin"
-
-# Android SDK: macOS default, Linux default, then the old Linux external drive
-for sdk in "$HOME/Library/Android/sdk" "$HOME/Android/Sdk" "/mnt/a0cae30c-c710-4db8-a518-dc06e08341bf/Android/SDK"; do
+# Android SDK for React Native (installed by Android Studio): macOS, then Ubuntu
+for sdk in "$HOME/Library/Android/sdk" "$HOME/Android/Sdk"; do
   if [[ -d "$sdk" ]]; then
     export ANDROID_HOME="$sdk"
-    path+=("$sdk/emulator" "$sdk/tools" "$sdk/tools/bin" "$sdk/platform-tools")
-    # The external drive also kept the AVDs and .android dir inside the SDK
-    if [[ "$sdk" == /mnt/* ]]; then
-      export ANDROID_AVD_HOME="$sdk/.android/avd"
-      export ANDROID_SDK_HOME="$sdk/"
-    fi
+    path+=("$sdk/emulator" "$sdk/platform-tools")
     break
   fi
 done
@@ -107,11 +100,7 @@ alias ll="ls -lah"
 alias ..="cd .."
 # macOS ships `open`; on Linux map it to xdg-open
 [[ "$OSTYPE" == linux* ]] && (( $+commands[xdg-open] )) && alias open="xdg-open"
-alias start-dashboard="cd $HOME/Documents/Prixz/Avus-dashboard && npm start"
-alias start-api-dev="cd $HOME/Documents/Prixz/GraphQL-API && nrd"
-alias start-api-prod="cd $HOME/Documents/Prixz/GraphQL-API && ns"
 alias reload="exec zsh"
-alias dev="cd ~/Documents/dev"
 alias config="vi ~/.zshrc"
 alias cat-config="cat ~/.zshrc"
 alias d="adb shell input keyevent 82"
@@ -119,23 +108,15 @@ alias grlc="git reset --soft HEAD~1"
 alias android="react-native run-android"
 alias reverse="adb reverse tcp:8081 tcp:8081"
 alias check-update="ncu -g"
-alias release="./gradlew app:assembleRelease"
-alias flipper="$HOME/Downloads/Flipper-linux/flipper"
-alias ioe="adb -s emulator-5554 install app/build/outputs/apk/release/app-release.apk"
-alias iod="adb -s 98892a4335444f4b39 install app/build/outputs/apk/release/app-release.apk"
-alias iodd="adb -s 98892a4335444f4b39 install app/build/outputs/apk/debug/app-debug.apk"
-alias open-emulator="emulator -avd Pixel_3_API_28"
-alias open-apk="open /Users/Hugo/Desktop/prixz/prixz-marketplace-native/android/app/build/outputs/apk"
 alias weather="curl https://v2.wttr.in"
-alias nr="npm run"
-alias ns="npm start"
-alias nt="npm t"
-alias nrd="npm run dev"
+alias pr="pnpm run"
+alias ps="pnpm start"
+alias pt="pnpm t"
+alias pd="pnpm run dev"
 alias yd="yarn dev"
 alias yb="yarn build"
 alias y="yarn"
 alias yt="yarn test"
-alias gpt="prisma token --copy"
 
 
 #################################################
