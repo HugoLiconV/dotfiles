@@ -5,12 +5,13 @@ Compilation of all of my dotfiles
 Clone repository.
 
 ```bash
-git clone https://github.com/HugoLiconV/dotfiles.git
+git clone https://github.com/HugoLiconV/dotfiles.git ~/dev/dotfiles
+export DOTFILES=~/dev/dotfiles   # wherever you cloned it
 ```
 
 ### Setup Vim
 ```bash
-ln -s ~/dotfiles/.vimrc ~/.vimrc
+ln -s $DOTFILES/.vimrc ~/.vimrc
 ```
 
 ### Install tmux
@@ -20,7 +21,7 @@ brew install tmux
 
 Create Symlink
 ```bash
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s $DOTFILES/.tmux.conf ~/.tmux.conf
 ```
 
 ### Install Tmux Plugin Manager (tpm)
@@ -34,8 +35,8 @@ Install plugins
 Install [herdr](https://herdr.dev), then create symlinks for the config and the status bar scripts
 ```bash
 mkdir -p ~/.config/herdr
-ln -s ~/dev/dotfiles/.config/herdr/config.toml ~/.config/herdr/config.toml
-ln -s ~/dev/dotfiles/.config/herdr/status ~/.config/herdr/status
+ln -s $DOTFILES/.config/herdr/config.toml ~/.config/herdr/config.toml
+ln -s $DOTFILES/.config/herdr/status ~/.config/herdr/status
 ```
 Apply changes with `herdr server reload-config`. The prefix is `Ctrl + a`
 
@@ -49,7 +50,7 @@ Create Symlink
 # Remove default .zshrc file
 rm ~/.zshrc
 # Create a symlink
-ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s $DOTFILES/.zshrc ~/.zshrc
 ```
 
 Install Dracula Theme
