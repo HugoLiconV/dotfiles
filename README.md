@@ -30,6 +30,14 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 Install plugins
 1. Press `prefix` + `I` (Capital i, as in Install). The prefix is `Ctrl + a`
 
+### Setup herdr
+Install [herdr](https://herdr.dev), then create symlinks for the config and the status bar scripts
+```bash
+mkdir -p ~/.config/herdr
+ln -s ~/dev/dotfiles/.config/herdr/config.toml ~/.config/herdr/config.toml
+ln -s ~/dev/dotfiles/.config/herdr/status ~/.config/herdr/status
+```
+Apply changes with `herdr server reload-config`. The prefix is `Ctrl + a`
 
 ### Install Oh My Zsh
 ```bash

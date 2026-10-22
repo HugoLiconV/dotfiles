@@ -1,0 +1,22 @@
+onboarding = false
+
+[ui]
+tab_bar_position = "bottom"
+tab_bar_right_separator = " · "
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "command", command = "~/.config/herdr/status/cpu.sh", interval_seconds = 5, timeout_seconds = 2 },
+  { type = "command", command = "~/.config/herdr/status/ram.sh", interval_seconds = 10, timeout_seconds = 2 },
+  { type = "command", command = "~/.config/herdr/status/battery.sh", interval_seconds = 30, timeout_seconds = 2 },
+  { type = "datetime", format = "\uf017 %H:%M" },
+]
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "dracula"
+auto_switch = false
+
+[keys]
+prefix = "ctrl+a"
